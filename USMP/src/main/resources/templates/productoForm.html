@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Agregar Producto</title>
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="1/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body style="background: #8FC056;" >
+	<table style="width: 65%; margin-left: 20%; margin-top: 20px; border-style: solid; border-top:1px; border-bot:1px; background: white ;" >
+		<tr>
+			<td colspan="2" >
+				<div style="font-size: 22px; text-align: center; font-family: 'AR JULIAN'; margin:5px;" >
+					<b>SISTEMA DE VENTAS PRESENCIALES</b>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td style="width: 25%;">
+				<div style="margin: 2px; ">
+				<a href="#" class="btn btn-default btn-sm " style="width: 100% !important;" >Gestionar ventas</a> <br></br>
+				<a Href="#" class="btn btn-default btn-sm " style="width: 100% !important;" >Registra venta</a> <br></br>
+				<a href="/listarProductos" class="btn btn-default btn-sm " style="width: 100% !important;" >Mantenimiento de Productos</a> <br></br>
+				<a href="/listarPersonas" class="btn btn-default btn-sm " style="width: 100% !important;" >Mantenimiento de Personas</a> <br></br>
+				<a href="/" class="btn btn-default btn-sm " style="width: 100% !important;" >Salir</a> <br></br>
+				</div>
+			</td>
+			<td style="width: 75%;">
+				<div style="width: 100%; font-size: 12px; padding: 10px; ">
+					
+					<form action="#" th:action="@{/agregarProducto}" th:object="${producto}" method="post">
+						<input type="hidden" th:field="*{codigo}"   />
+						<table  style="width: 95%;  border-style: solid; border-top:1px; border-bot:1px; " >
+							<tr>
+								<td colspan="2" style="text-align: center; font-size: 22px;  font-family: 'AR JULIAN'; margin:5px; ">
+									Registrar Productos
+								</td>
+							</tr>
+							<tr>
+								<td style="text-align: center;">
+									<p th:text="#{nombre}"/>
+								</td>
+								<td>
+									<input type="text" th:field="*{nombre}" style="width: 98%; margin-top: 3px;" class="form-control input-sm" />
+								</td>
+								<td th:if="${#fields.hasErrors('nombre')}"  th:errors="*{nombre}" 
+ 			 						style="color: #ff0000;">Ingrese Nombre</td>
+							</tr>
+							<tr>
+								<td style="text-align: center;">									
+									<p th:text="#{precio}"/>
+								</td>
+								<td>
+									<input type="text" th:field="*{precio}" style="width: 98%; margin-top: 3px; " class="form-control input-sm" />
+								</td>
+								<td th:if="${#fields.hasErrors('precio')}"  th:errors="*{precio}" 
+ 			 						style="color: #ff0000;">Debe ingresar un precio mayor a 0</td>
+							</tr>
+							<tr>
+								<td style="text-align: center;">
+									<p th:text="#{cantidad}"/>									
+								</td>
+								<td>
+									<input type="text" th:field="*{cantidad}" style="width: 98%; margin-top: 3px;" class="form-control input-sm" />
+								</td>
+								<td th:if="${#fields.hasErrors('cantidad')}"  th:errors="*{cantidad}" 
+ 			 						style="color: #ff0000;">Debe ingresar una cantidad mayor 1</td>
+							</tr>
+							<tr>
+								<td>
+								
+								</td>
+								<td>
+									<input type="submit" value="ENVIAR" class="btn btn-primary btn-sm "  style="margin:4px;"/>
+									<input type="reset" value="LIMPIAR" class="btn btn-primary btn-sm " style="margin:4px;" />
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
